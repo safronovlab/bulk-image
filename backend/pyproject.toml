@@ -1,0 +1,45 @@
+[project]
+name = "bulk-color-tool"
+version = "2.0.0"
+description = "Bulk Image Color Replacement Tool — REST API for batch PNG/JPEG color replacement with design variations"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "Jesus Gonzalez / illcurrency.com" },
+]
+
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "python-multipart>=0.0.9",
+    "opencv-python-headless>=4.10.0",
+    "Pillow>=10.4.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.5.0",
+    "pydantic-settings>=2.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.27",
+]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["app"]
+python_files = ["test_*.py"]

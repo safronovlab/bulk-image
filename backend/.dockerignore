@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+
+# Environment (never copy .env into image — use --env-file at runtime)
+.env
+.env.example
+.env.production
+
+# Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+**/*.egg-info/
+.venv/
+venv/
+**/.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime data (created at container startup)
+data/
+
+# Documentation (not needed in runtime image)
+**/*.md
+**/*_spec.md
+notes/
+
+# Docker / build tooling
+Dockerfile
+docker-compose.yml
+.dockerignore
+Makefile
+uv.lock
+pyproject.toml
+
+# Tests (not needed in production image)
+**/test_*.py
+**/*_test.py
+**/conftest.py
