@@ -1,0 +1,379 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Design language — Anthropic-light, editorial, technical-but-warm.
+   Warm paper surfaces · single clay-orange accent · hairline rules ·
+   Georgia for editorial display · ui-monospace for every numeric.
+   ───────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Surfaces — three warm paper tones, nothing else */
+  --color-paper:        #F8F5EF;   /* page background */
+  --color-paper-2:      #FFFCF7;   /* card surface */
+  --color-paper-3:      #F2EEE5;   /* inset / hover surface */
+  --color-paper-4:      #ECE6D9;   /* deeper inset, sparingly */
+
+  /* Hairlines — alpha-on-ink, scales with paper tones */
+  --color-rule:         #E8E2D2;   /* default border */
+  --color-rule-strong:  #D6CDB6;   /* hover / focus border */
+
+  /* Ink — three text tones, no more */
+  --color-ink:          #1A1A1A;
+  --color-ink-2:        #4A4A48;
+  --color-ink-3:        #8A877E;
+  --color-ink-4:        #B5B0A2;   /* faint, for placeholders only */
+
+  /* Single accent — Anthropic clay */
+  --color-clay:         #CC785C;
+  --color-clay-deep:    #BF5417;
+  --color-clay-soft:    #F5E2D8;
+  --color-clay-tint:    #FBF0E8;
+
+  /* Muted semantic palette — desaturated to avoid the rainbow look */
+  --color-ok:           #5B7A52;
+  --color-ok-bg:        #EDF1E5;
+  --color-warn:         #B07A2A;
+  --color-warn-bg:      #F6EAD0;
+  --color-bad:          #A2492F;
+  --color-bad-bg:       #F4E0D6;
+  --color-info:         #4A4A48;
+  --color-info-bg:      #F2EEE5;
+
+  /* Legacy aliases — keep AuthImage's tokens working without a rewrite */
+  --color-surface:        var(--color-paper-2);
+  --color-surface-2:      var(--color-paper);
+  --color-surface-3:      var(--color-paper-3);
+  --color-border:         var(--color-rule);
+  --color-border-hover:   var(--color-rule-strong);
+  --color-text:           var(--color-ink);
+  --color-text-secondary: var(--color-ink-2);
+  --color-text-muted:     var(--color-ink-3);
+  --color-text-faint:     var(--color-ink-4);
+  --color-primary:        var(--color-ink);
+  --color-primary-hover:  #2B2B2B;
+  --color-accent:         var(--color-clay);
+  --color-accent-hover:   var(--color-clay-deep);
+  --color-success:        var(--color-ok);
+  --color-success-bg:     var(--color-ok-bg);
+  --color-warning:        var(--color-warn);
+  --color-warning-bg:     var(--color-warn-bg);
+  --color-danger:         var(--color-bad);
+  --color-danger-bg:      var(--color-bad-bg);
+}
+
+* { box-sizing: border-box; }
+
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+nav button { outline: none !important; box-shadow: none !important; }
+
+html, body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  min-height: 100vh;
+  font-family: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01', 'salt';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root { min-height: 100vh; }
+
+/* Editorial display family — Georgia ships with every OS, costs zero KB. */
+.font-display {
+  font-family: 'Iowan Old Style', 'Apple Garamond', Georgia, 'Times New Roman', ui-serif, serif;
+  letter-spacing: -0.012em;
+  font-feature-settings: 'kern', 'liga', 'onum';
+}
+
+/* Mono for every numeric, hex code, ID — JetBrains/SF Mono native cascade */
+.font-mono,
+code, kbd, samp, pre {
+  font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+  font-feature-settings: 'zero', 'ss02';
+}
+
+/* Scrollbar — almost invisible, paper-toned */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-4); background-clip: padding-box; }
+
+/* Native form rebuild — clay accent, paper background */
+input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+}
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--color-paper-4);
+  border-radius: 999px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  border: 2px solid var(--color-paper-2);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(26,26,26,0.18);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  background: var(--color-clay);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-ink);
+  border: 2px solid var(--color-paper-2);
+  cursor: pointer;
+}
+
+/* Native select — paper background, clay focus ring */
+select {
+  background-color: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+select:focus {
+  border-color: var(--color-clay);
+  box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.14);
+}
+
+/* Animations — kept restrained, slightly slower for editorial feel */
+@keyframes fadeIn          { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp        { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown      { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn         { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes shimmer         { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes pulseSoft       { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+@keyframes progressStripe  { 0% { background-position: 1rem 0; } 100% { background-position: 0 0; } }
+@keyframes float           { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes spinSlow        { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Apply pulse — used when batch-applying settings to a set of thumbnails */
+@keyframes applyPulse {
+  0%   { transform: scale(1);     box-shadow: 0 0 0 0   rgba(204,120,92, 0.55); }
+  35%  { transform: scale(1.045); box-shadow: 0 0 0 10px rgba(204,120,92, 0.0); }
+  100% { transform: scale(1);     box-shadow: 0 0 0 0   rgba(204,120,92, 0.0); }
+}
+
+/* "Configured strip" sweep — confirms a batch action visually */
+@keyframes sweepRight {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+.animate-fade-in        { animation: fadeIn 0.32s ease-out both; }
+.animate-fade-in-up     { animation: fadeInUp 0.4s ease-out both; }
+.animate-fade-in-down   { animation: fadeInDown 0.3s ease-out both; }
+.animate-scale-in       { animation: scaleIn 0.32s ease-out both; }
+.animate-pulse-soft     { animation: pulseSoft 2s ease-in-out infinite; }
+.animate-float          { animation: float 3s ease-in-out infinite; }
+.animate-spin-slow      { animation: spinSlow 8s linear infinite; }
+.animate-apply-pulse    { animation: applyPulse 0.7s ease-out 1; }
+.animate-sweep          { animation: sweepRight 1.4s ease-out 1; }
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--color-paper-3) 25%, var(--color-rule) 50%, var(--color-paper-3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+.animate-progress-stripe {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255,255,255,0.18) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(255,255,255,0.18) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progressStripe 0.6s linear infinite;
+}
+
+.stagger-children > * { animation: fadeInUp 0.4s ease-out both; }
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 350ms; }
+
+/* Tooltip */
+.tooltip { position: relative; }
+.tooltip[data-tip]:not([data-tip=""])::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 50;
+}
+.tooltip[data-tip]:not([data-tip=""]):hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Cards lift gently on hover — no exaggerated shadow */
+.card-hover {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.card-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px -10px rgba(26,26,26,0.10), 0 2px 6px -4px rgba(26,26,26,0.05);
+  border-color: var(--color-rule-strong);
+}
+
+/* Buttons compress on press — physical feedback, not a wiggle */
+.btn-press { transition: transform 0.08s ease; }
+.btn-press:active { transform: scale(0.97); }
+
+/* Editorial rule — used between sections of the same card */
+.rule {
+  height: 1px;
+  background: var(--color-rule);
+  border: 0;
+}
+
+/* "Configured" thumbnail outline — persistent, glanceable signal that
+   an image has color mappings applied. Not a transient pulse. */
+.thumb-configured {
+  border-color: var(--color-clay) !important;
+  box-shadow: inset 0 0 0 1px var(--color-clay);
+}
+.thumb-configured-preview {
+  border-color: var(--color-ok) !important;
+  box-shadow: inset 0 0 0 1px var(--color-ok);
+}
+.thumb-override {
+  border-color: var(--color-warn) !important;
+  box-shadow: inset 0 0 0 1px var(--color-warn);
+}
+
+/* Cross-fade for the recolored thumbnail overlay — soft hand-off from the
+   server-original image to the worker-recolored result. */
+@keyframes thumbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.thumb-fade-in { animation: thumbFadeIn 0.22s ease-out both; }
+
+/* Batch Mode B — subtle paper grid backdrop (LayoutGrid-feel) so the
+   per-design card reads as "many separate cells" and Mode A reads as one
+   broadcast surface. */
+.mode-b-grid {
+  background-image:
+    linear-gradient(to right, rgba(26, 26, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 26, 0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-position: -1px -1px;
+}
+.mode-b-grid-active {
+  background-color: var(--color-paper-2);
+  background-image:
+    linear-gradient(to right, rgba(26, 26, 26, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 26, 0.09) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-position: -1px -1px;
+}
+
+/* Mode B per-design list — light divider rhythm so rows feel like cells. */
+.mode-b-list > * + * {
+  position: relative;
+}
+
+/* Batch step indicator — pill row with circles + connectors */
+.batch-step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--color-rule);
+  background: var(--color-paper-2);
+  color: var(--color-ink-3);
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+.batch-step-circle.is-active {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  box-shadow: 0 1px 4px rgba(26,26,26,0.12);
+}
+.batch-step-circle.is-done {
+  border-color: var(--color-ok);
+  background: var(--color-ok);
+  color: var(--color-paper);
+}
+.batch-step-connector {
+  flex: 1;
+  height: 1.5px;
+  background: var(--color-rule);
+  border-radius: 999px;
+  transition: background 0.18s ease;
+}
+.batch-step-connector.is-active {
+  background: var(--color-ink);
+}
