@@ -1,5 +1,10 @@
 # Bulk Recolor — Color Studio
 
+[![CI](https://github.com/safronovlab/bulk-image/actions/workflows/ci.yml/badge.svg)](https://github.com/safronovlab/bulk-image/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Pixel-perfect bulk recoloring of PNG and JPEG designs for apparel, sneaker, and POD brands.**
 
 Production tool for batch color replacement on print-ready designs. Upload, define a palette, recolor up to 20 designs in one shot. Pixel-by-pixel preservation: same DPI, same resolution, same quality. Per-region click-fix when an algorithm misses an edge.
