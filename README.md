@@ -1,6 +1,5 @@
 # Bulk Recolor — Color Studio
 
-[![CI](https://github.com/safronovlab/bulk-image/actions/workflows/ci.yml/badge.svg)](https://github.com/safronovlab/bulk-image/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
